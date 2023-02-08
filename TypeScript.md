@@ -68,7 +68,36 @@ function playerMaker(name:string):Player {
   }
 }
 
+//arrow형태의 ts
+const playerMaker = (name:string): Player => ({name})
+}
+
 const seongchan = playerMaker("seongchan")
 seongchan.age = 28;
+```
+
+```typescript
+//readonly 기능
+// readonly를 바꾸려고 접근해도 바뀌지 않음
+type Player = {
+  readonly name: Name
+  age? Age
+}
+```
+
+```typescript
+//Tuple
+// 배열에 들어갈 type들을 순서대로 맞춰 줄 수 있음
+
+const player : [string, number, boolean] = ['seongchan', 1, true]
+```
+
+```typescript
+//any
+//typescript의 보호장치들로부터 빠져나오고 싶을때 사용하는 문법
+
+let a : any[] = [1,2,3,4]
+const b : any = true
+
 ```
 
