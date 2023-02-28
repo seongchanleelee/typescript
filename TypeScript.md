@@ -101,3 +101,76 @@ const b : any = true
 
 ```
 
+```typescript
+// api로부터 응답을 받는데 응답의 타입을 모른다면
+//unknown
+
+// 응답으로 받는 a 가 무었일지 모르니 unknown을 이용하여 일종의 ts만의 보호를 함
+let a:unknown;
+
+//a 가 number type 이라면
+if(typeof a ==='number'){
+  let b = a + 1
+}
+
+// a 가 string type 이라면
+if(typeof a ==='string'){
+  let b = a.toUpperCase();
+}
+```
+
+```typescript
+// void
+// void는 아무것도 return 하지 않는 함수를 대상으로 사용!
+// 보통 void는 따로 선언하지 않음 ts에서 아무것도 return 하지 않는걸 자동으로 인식
+
+function hello() {
+  console.log('x')
+}
+```
+
+```typescript
+//never
+//함수가 절대 return하지 않을 때 발생!
+
+// return 하지 않고 오류를 발생시키는 함수
+function hello(): never{
+  throw new Error("xxx")
+}
+
+//또한 never는 타입이 두가지 일 수도 있는 상황에 발생할 수 있음
+function hello(name:string|number){
+  if(typeof name ==='string') {
+    
+  } else if (typeof name ==='number') {
+    
+  } else{
+    // 이때 name은 never라는 type을 가짐
+    name
+  }
+}
+```
+
+
+
+#### call signatures
+
+```typescript
+function add (a:number, b:number) {
+  return a + b
+}
+
+const add = (a:number, b:number) => a+b
+
+// call signature
+// 먼저 함수의 타입을 설명하고 코드를 구현하게끔 하는 장점이 있음
+type Add = (a:number, b:number) => number;
+
+const add:Add = (a, b) => a + b
+```
+
+
+
+- polymorphism(다형성)
+- overloading(오버로딩)
+
