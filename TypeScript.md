@@ -172,5 +172,66 @@ const add:Add = (a, b) => a + b
 
 
 - polymorphism(다형성)
-- overloading(오버로딩)
+
+
+##### overloading
+
+```typescript
+// 나쁜 예시
+type Add = {
+  (a: number, b: number): number
+  (a: number, b: string): number
+}
+
+const add: Add = (a, b) => {
+  if(typeof b === 'string') return a
+  return a + b
+}
+```
+
+
+
+- 오버로딩은 여러 call signatures가 있는 함수일 뿐
+
+```typescript
+type Config = {
+  path: string,
+  state: object
+}
+
+type Push = {
+  (path:string):void
+  (config: Config):void
+}
+
+const push: Push = (config) => {
+  if(typeof config === 'string') {
+    console.log(config)
+  } else {
+    console.log(config.path)
+  }
+}
+```
+
+```
+// 파라미터의 갯수가 다를때 일어나는 것
+
+type Add = {
+  (a:number, b:number): number
+  (a:number, b:number, c:number): number
+}
+
+// 잘못된 예시
+// c를 인자값으로 가져왔음에도 c가 선언되지 않았기에 c의 타입을 모름
+// c는 옵션값이라는걸 인지 시켜줘야함
+const add:Add = (a, b, c) => {
+  return a + b
+}
+
+// 잘된 예시
+// c?: number ==> c는 아마 숫자일 것이다.
+const add:Add = (a, b, c?:number) => {
+  return a + b
+}
+```
 

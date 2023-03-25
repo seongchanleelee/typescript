@@ -1,0 +1,14 @@
+<h1>TODO PLAN</h1>
+<div>
+  <ul>
+    <li *ngFor="let todo of todos">
+      <div>{{todo}}</div>
+    </li>
+  </ul>
+</div>
+
+<span>add some?</span>
+<!-- <input #newTodo id="name" (keyup)="0" value=" " (keyup.enter)="addTodo(newTodo.value)"> -->
+<!-- <button (click)="addTodo(newTodo.value)">add</button> -->
+<input #newTodo (keyup)="0" value=" ">
+<p>{{newTodo.value}}</p>
